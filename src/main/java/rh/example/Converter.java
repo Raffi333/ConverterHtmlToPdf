@@ -41,6 +41,8 @@ public class Converter {
         File pdf = new File(pdfDirPath + pdfFileName);
         Document doc = Jsoup.parse(html, "UTF-8");
         doc.outputSettings().syntax(Document.OutputSettings.Syntax.xml);
+        InputConverter.inputsConverter(doc);
+
         try (FileOutputStream outputStream = new FileOutputStream(pdf)) {
 
             ITextRenderer renderer = new ITextRenderer();

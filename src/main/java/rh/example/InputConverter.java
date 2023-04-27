@@ -18,13 +18,15 @@ public class InputConverter {
         Elements inputElements = doc.select("input");
         setCheckboxCheckedAttr(inputElements);
         typeRadioChangeToCheckbox(inputElements);
-        setStyleForTextInput(inputElements);
+        changeInputByTypeTextToSpan(inputElements);
+//        setStyleForInputByTypeText(inputElements);
 
         Elements textareaElements = doc.select("textarea");
         changeTextareaToSpan(textareaElements);
 
         Elements selectElements = doc.select("select");
-        changeSelectToSpam(selectElements);
+        changeSelectToSpas(selectElements);
+
 
         System.out.println("ok");
     }
@@ -67,7 +69,7 @@ public class InputConverter {
         }
     }
 
-    public static void setStyleForTextInput(Elements inputElements) {
+    public static void setStyleForInputByTypeText(Elements inputElements) {
         /*
          *If input type is text set style="width:400px;height:30px"
          * */
@@ -80,7 +82,7 @@ public class InputConverter {
                     styles.append(attributes.get("style"));
                     styles.append(attributes.get(";"));
                 }
-                styles.append("width:400px !important");
+                styles.append("width:100px !important");
                 styles.append(";height:30px !important");
                 styles.append(";padding:3px !important");
                 attributes.put("style", styles.toString());
@@ -97,7 +99,7 @@ public class InputConverter {
         }
     }
 
-    public static void changeSelectToSpam(Elements selectElements) {
+    public static void changeSelectToSpas(Elements selectElements) {
         for (Element select : selectElements) {
             Elements options = select.select("option");
             StringBuilder textSelected = new StringBuilder("");
@@ -113,6 +115,19 @@ public class InputConverter {
             }
             select.tagName("span");
             select.appendText(textSelected.toString());
+        }
+    }
+
+    public static void changeInputByTypeTextToSpan(Elements inputElements) {
+        /*
+         * */
+
+        for (Element input : inputElements) {
+            Attributes attributes = input.attributes();
+            if (attributes.get("type").equals("text")) {
+                input.tagName("span");
+                input.appendText(input.attributes().get("value"));
+            }
         }
     }
 }
