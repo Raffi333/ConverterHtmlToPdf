@@ -13,10 +13,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
-    implementation group: 'org.xhtmlrenderer', name: 'core-renderer', version: 'R8'
+//    implementation group: 'org.xhtmlrenderer', name: 'core-renderer', version: 'R8'
+    implementation group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf-openpdf', version: '9.1.22'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.15.3'
 
 }
 
 test {
     useJUnitPlatform()
 }
+
+
+//Both org.xhtmlrenderer:core-renderer and org.xhtmlrenderer:flying-saucer-pdf-openpdf are Java libraries that can be used to convert HTML documents to PDF format, but they use different PDF rendering engines and have different feature sets.
+//
+//org.xhtmlrenderer:core-renderer is an older library that uses the open-source PDF renderer iText 2 to generate PDFs. This library is no longer actively maintained and has been superseded by the newer flying-saucer-pdf-openpdf library.
+//
+//org.xhtmlrenderer:flying-saucer-pdf-openpdf is a newer library that uses the open-source PDF renderer OpenPDF to generate PDFs. This library is actively maintained and supports more modern CSS features than the older core-renderer library.
+//
+//One notable feature of flying-saucer-pdf-openpdf is its support for CSS3 layout and paged media, which allows for more complex page layouts and printing features. It also includes features like support for embedded fonts and PDF bookmarks.
